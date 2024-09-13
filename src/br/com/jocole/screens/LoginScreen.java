@@ -21,6 +21,7 @@ public class LoginScreen extends javax.swing.JFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     
+    
     //Metodo de logar 
     public void Log(){
         //query no bd
