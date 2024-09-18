@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
 package projeto_jocole;
 
 import java.awt.*;
@@ -5,15 +9,15 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-<<<<<<< HEAD
 /**
  *
  * @author felipe.slima
  */
-=======
->>>>>>> 843a19cd6d42ec036ddb3bb9f840ccdf8da97208
 public class Projeto_Jocole {
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         // Criando o JFrame principal
         JFrame frame = new JFrame("Sistema PDV");
@@ -26,19 +30,11 @@ public class Projeto_Jocole {
 
         // Criando os painéis (telas) que serão alternados
         JPanel loginPanel = new JPanel();
-<<<<<<< HEAD
-=======
-        loginPanel.setBackground(Color.LIGHT_GRAY); // Cor de fundo para o painel de login
->>>>>>> 843a19cd6d42ec036ddb3bb9f840ccdf8da97208
         loginPanel.add(new JLabel("Tela de Login"));
         JButton goToDashboardButton = new JButton("Ir para o Dashboard");
         loginPanel.add(goToDashboardButton);
 
         JPanel dashboardPanel = new JPanel();
-<<<<<<< HEAD
-=======
-        dashboardPanel.setBackground(Color.CYAN); // Cor de fundo para o painel de dashboard
->>>>>>> 843a19cd6d42ec036ddb3bb9f840ccdf8da97208
         dashboardPanel.add(new JLabel("Dashboard do PDV"));
         JButton goToLoginButton = new JButton("Voltar para o Login");
         dashboardPanel.add(goToLoginButton);
