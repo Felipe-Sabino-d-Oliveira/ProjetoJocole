@@ -6,6 +6,8 @@ package br.com.jocole.screens;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -22,7 +24,19 @@ public class MainScreen extends javax.swing.JFrame {
 
     public MainScreen() {
         initComponents();
+        setupCardLayout();  // Inicializa o CardLayout e define as ações dos botões
 
+    }
+
+    private void setupCardLayout() {
+        cardLayout = (CardLayout) PainelBase.getLayout(); // Define o layout como CardLayout
+        botaoMudarParaPainelUm.addActionListener((ActionEvent e) -> {
+            cardLayout.show(PainelBase, "card4");  // Mostra o painel "card4" (painelFilhoUm)
+        });
+
+        botaoMudarParaPainelDois.addActionListener((ActionEvent e) -> {
+            cardLayout.show(PainelBase, "card3");  // Mostra o painel "card3" (painelFilhoDois)
+        });
     }
 
     /**
@@ -34,136 +48,286 @@ public class MainScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cardLayout = new CardLayout();
-        getContentPane().setLayout(cardLayout);  // Configurar o layout do contentPane para usar CardLayout
-
-        painel2 = new javax.swing.JPanel();
-        painel2_2 = new javax.swing.JPanel();
-        botaoPainelDois = new javax.swing.JButton();
-        painel1 = new javax.swing.JPanel();
-        painel1_1 = new javax.swing.JPanel();
-        botaoPainelUm = new javax.swing.JButton();
+        MenuFixo = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        PainelBase = new javax.swing.JPanel();
+        painelFilhoDois = new javax.swing.JPanel();
+        botaoMudarParaPainelUm = new javax.swing.JButton();
+        painelFilhoUm = new javax.swing.JPanel();
+        botaoMudarParaPainelDois = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        painel2_2.setBackground(new java.awt.Color(0, 102, 102));
+        MenuFixo.setBackground(new java.awt.Color(52, 106, 178));
+        MenuFixo.setForeground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout painel2_2Layout = new javax.swing.GroupLayout(painel2_2);
-        painel2_2.setLayout(painel2_2Layout);
-        painel2_2Layout.setHorizontalGroup(
-            painel2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        painel2_2Layout.setVerticalGroup(
-            painel2_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jocole/images/logo.png"))); // NOI18N
 
-        botaoPainelDois.setText("Mudar para Painel 1");
-        botaoPainelDois.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoPainelDoisActionPerformed(evt);
+        jPanel9.setBackground(new java.awt.Color(52, 106, 178));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jocole/images/home-2.png"))); // NOI18N
+        jLabel8.setText("  Início");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout painel2Layout = new javax.swing.GroupLayout(painel2);
-        painel2.setLayout(painel2Layout);
-        painel2Layout.setHorizontalGroup(
-            painel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painel2Layout.createSequentialGroup()
-                .addGroup(painel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painel2Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(painel2_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painel2Layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(botaoPainelDois)))
-                .addContainerGap(188, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        painel2Layout.setVerticalGroup(
-            painel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painel2Layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(painel2_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(botaoPainelDois)
-                .addContainerGap(47, Short.MAX_VALUE))
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel8)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        painel1_1.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel10.setBackground(new java.awt.Color(52, 106, 178));
 
-        javax.swing.GroupLayout painel1_1Layout = new javax.swing.GroupLayout(painel1_1);
-        painel1_1.setLayout(painel1_1Layout);
-        painel1_1Layout.setHorizontalGroup(
-            painel1_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jocole/images/box.png"))); // NOI18N
+        jLabel9.setText(" Estoque");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        painel1_1Layout.setVerticalGroup(
-            painel1_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel9)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        botaoPainelUm.setText("Mudar para Painel 2");
-        botaoPainelUm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoPainelUmActionPerformed(evt);
+        jPanel11.setBackground(new java.awt.Color(52, 106, 178));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jocole/images/graph 1.png"))); // NOI18N
+        jLabel10.setText(" Relatórios");
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout painel1Layout = new javax.swing.GroupLayout(painel1);
-        painel1.setLayout(painel1Layout);
-        painel1Layout.setHorizontalGroup(
-            painel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painel1Layout.createSequentialGroup()
-                .addContainerGap(145, Short.MAX_VALUE)
-                .addGroup(painel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(painel1_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoPainelUm))
-                .addGap(155, 155, 155))
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel10)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
-        painel1Layout.setVerticalGroup(
-            painel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(painel1_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(botaoPainelUm)
-                .addGap(45, 45, 45))
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel10)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        // Adicionando os painéis ao CardLayout com seus respectivos nomes
-        getContentPane().add(painel1, "Painel 1");
-        getContentPane().add(painel2, "Painel 2");
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jocole/images/Power_icon.png"))); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
 
-        // Exibir o painel 1 inicialmente
-        cardLayout.show(getContentPane(), "Painel 1");
+        jPanel12.setBackground(new java.awt.Color(52, 106, 178));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jocole/images/cash register.png"))); // NOI18N
+        jLabel12.setText("Vendas");
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel12)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout MenuFixoLayout = new javax.swing.GroupLayout(MenuFixo);
+        MenuFixo.setLayout(MenuFixoLayout);
+        MenuFixoLayout.setHorizontalGroup(
+            MenuFixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuFixoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(57, 57, 57))
+            .addGroup(MenuFixoLayout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addComponent(jLabel11)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        MenuFixoLayout.setVerticalGroup(
+            MenuFixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuFixoLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel11)
+                .addGap(41, 41, 41))
+        );
+
+        PainelBase.setLayout(new java.awt.CardLayout());
+
+        painelFilhoDois.setBackground(new java.awt.Color(255, 51, 51));
+
+        botaoMudarParaPainelUm.setText("mudar para painel um");
+        botaoMudarParaPainelUm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoMudarParaPainelUmActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painelFilhoDoisLayout = new javax.swing.GroupLayout(painelFilhoDois);
+        painelFilhoDois.setLayout(painelFilhoDoisLayout);
+        painelFilhoDoisLayout.setHorizontalGroup(
+            painelFilhoDoisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelFilhoDoisLayout.createSequentialGroup()
+                .addGap(340, 340, 340)
+                .addComponent(botaoMudarParaPainelUm)
+                .addContainerGap(342, Short.MAX_VALUE))
+        );
+        painelFilhoDoisLayout.setVerticalGroup(
+            painelFilhoDoisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelFilhoDoisLayout.createSequentialGroup()
+                .addGap(165, 165, 165)
+                .addComponent(botaoMudarParaPainelUm)
+                .addContainerGap(336, Short.MAX_VALUE))
+        );
+
+        PainelBase.add(painelFilhoDois, "card3");
+
+        painelFilhoUm.setBackground(new java.awt.Color(0, 153, 153));
+
+        botaoMudarParaPainelDois.setText("mudar para painel dois");
+        botaoMudarParaPainelDois.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoMudarParaPainelDoisActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painelFilhoUmLayout = new javax.swing.GroupLayout(painelFilhoUm);
+        painelFilhoUm.setLayout(painelFilhoUmLayout);
+        painelFilhoUmLayout.setHorizontalGroup(
+            painelFilhoUmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFilhoUmLayout.createSequentialGroup()
+                .addContainerGap(436, Short.MAX_VALUE)
+                .addComponent(botaoMudarParaPainelDois)
+                .addGap(242, 242, 242))
+        );
+        painelFilhoUmLayout.setVerticalGroup(
+            painelFilhoUmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFilhoUmLayout.createSequentialGroup()
+                .addContainerGap(262, Short.MAX_VALUE)
+                .addComponent(botaoMudarParaPainelDois)
+                .addGap(239, 239, 239))
+        );
+
+        PainelBase.add(painelFilhoUm, "card4");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(MenuFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(PainelBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PainelBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MenuFixo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoPainelDoisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPainelDoisActionPerformed
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        /*teste();*/
         // TODO add your handling code here:
-        // Trocar para o Painel 1
-        if (painel1 == null) {
-            System.out.println("Painel 1 não está inicializado.");
-        } else {
-            cardLayout.show(getContentPane(), "Painel 1");
-        }
+    }//GEN-LAST:event_jLabel8MouseClicked
 
-    }//GEN-LAST:event_botaoPainelDoisActionPerformed
-
-    private void botaoPainelUmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPainelUmActionPerformed
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-        if (painel1 == null) {
-            System.out.println("Painel 2 não está inicializado.");
-        } else {
-            cardLayout.show(getContentPane(), "Painel 2");
-        }
+    }//GEN-LAST:event_jLabel10MouseClicked
 
-    }//GEN-LAST:event_botaoPainelUmActionPerformed
+    private void botaoMudarParaPainelUmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMudarParaPainelUmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoMudarParaPainelUmActionPerformed
 
+    private void botaoMudarParaPainelDoisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMudarParaPainelDoisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoMudarParaPainelDoisActionPerformed
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+        logout();
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void logout(){
+        //fecha a janela
+        this.dispose();
+        //Chama a janela de login
+        //LoginScreen loginScreen = new LoginScreen();
+        //loginScreen.setVisible(true);
+    }
     /**
      * @param args the command line arguments
      */
@@ -200,11 +364,21 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoPainelDois;
-    private javax.swing.JButton botaoPainelUm;
-    private javax.swing.JPanel painel1;
-    private javax.swing.JPanel painel1_1;
-    private javax.swing.JPanel painel2;
-    private javax.swing.JPanel painel2_2;
+    private javax.swing.JPanel MenuFixo;
+    private javax.swing.JPanel PainelBase;
+    private javax.swing.JButton botaoMudarParaPainelDois;
+    private javax.swing.JButton botaoMudarParaPainelUm;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel painelFilhoDois;
+    private javax.swing.JPanel painelFilhoUm;
     // End of variables declaration//GEN-END:variables
 }
