@@ -9,6 +9,6 @@ package br.com.jocole.entites;
  * @author yuri.vasconcelos
  */
 public class Product {
-    String nome
+    //String nome
     
 }

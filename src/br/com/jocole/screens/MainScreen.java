@@ -4,6 +4,9 @@
  */
 package br.com.jocole.screens;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author felipe.slima
@@ -15,6 +18,8 @@ public class MainScreen extends javax.swing.JFrame {
      */
     public MainScreen() {
         initComponents();
+        mostrarDataAtual();
+
     }
 
     /**
@@ -44,7 +49,7 @@ public class MainScreen extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         labelVendasDoDia = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelData = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -238,7 +243,7 @@ public class MainScreen extends javax.swing.JFrame {
 
         jLabel2.setText("valor da variável aqui!");
 
-        jLabel3.setText("Data");
+        labelData.setText("Data");
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jocole/images/arrow.png"))); // NOI18N
         jButton3.setText("Conferir dias anteriores");
@@ -263,7 +268,7 @@ public class MainScreen extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
+                            .addComponent(labelData)
                             .addGap(43, 43, 43))
                         .addComponent(jLabel2)))
                 .addContainerGap(43, Short.MAX_VALUE))
@@ -282,7 +287,7 @@ public class MainScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(16, 16, 16)
-                        .addComponent(jLabel3)
+                        .addComponent(labelData)
                         .addGap(51, 51, 51)))
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -574,6 +579,18 @@ public class MainScreen extends javax.swing.JFrame {
         //LoginScreen loginScreen = new LoginScreen();
         //loginScreen.setVisible(true);
     }
+    
+    public final void mostrarDataAtual() {
+        // Obtém a data atual
+        Date dataAtual = new Date();
+
+        // Formata a data para o formato desejado (dia/mês/ano)
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
+        // Define o texto do JLabel com a data formatada
+        labelData.setText("Data: " + formato.format(dataAtual));
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -630,7 +647,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -648,6 +664,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel labelData;
     private javax.swing.JLabel labelVendasDoDia;
     private javax.swing.JLabel logo;
     // End of variables declaration//GEN-END:variables
