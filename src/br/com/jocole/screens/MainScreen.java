@@ -6,6 +6,10 @@ package br.com.jocole.screens;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+import br.com.jocole.dal.ConnectionModule;
+import br.com.jocole.entites.Product;
 
 /**
  *
@@ -19,6 +23,7 @@ public class MainScreen extends javax.swing.JFrame {
     public MainScreen() {
         initComponents();
         mostrarDataAtual();
+        loadProductsFromDatabase();
 
     }
 
@@ -32,6 +37,7 @@ public class MainScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel11 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         FixedMenu = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         buttonLogout = new javax.swing.JLabel();
@@ -59,8 +65,9 @@ public class MainScreen extends javax.swing.JFrame {
         jPanel14 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        previewProductTable = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -345,8 +352,6 @@ public class MainScreen extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jocole/images/stock.png"))); // NOI18N
         jLabel6.setText("jLabel6");
 
-        jLabel9.setText("*00*");
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jocole/images/arrow.png"))); // NOI18N
         jButton1.setText("Conferir estoques");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -357,32 +362,53 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
+        previewProductTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Sabor", "Preço", "Quant."
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        previewProductTable.setShowHorizontalLines(true);
+        previewProductTable.setShowVerticalLines(true);
+        jScrollPane2.setViewportView(previewProductTable);
+
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addGap(103, 103, 103))
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(jLabel8)
-                .addContainerGap(18, Short.MAX_VALUE))
-            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8))
-                .addGap(4, 4, 4)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -460,7 +486,7 @@ public class MainScreen extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -573,6 +599,7 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void logout(){
+        System.out.println("Saindo!");
         //fecha a janela
         this.dispose();
         //Chama a janela de login
@@ -591,6 +618,43 @@ public class MainScreen extends javax.swing.JFrame {
         labelData.setText("Data: " + formato.format(dataAtual));
     }
     
+    private void loadProductsFromDatabase() {
+        Connection conn = ConnectionModule.connection();
+        if (conn != null) {
+            String sql = "SELECT Sabor_picole, Preco_produto, Quantidade_produtos FROM tbprodutos"; // Substitua 'produtos' pelo nome correto da tabela no seu banco
+            try {
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery();
+
+                // Pega o modelo da tabela
+                DefaultTableModel model = (DefaultTableModel) previewProductTable.getModel();
+                model.setRowCount(0); // Limpa a tabela
+
+                while (rs.next()) {
+                    String sabor = rs.getString("sabor_picole");
+                    double preco = rs.getDouble("preco_produto");
+                    int quantidade = rs.getInt("quantidade_produtos");
+
+                    // Adiciona uma nova linha com os dados do banco
+                    model.addRow(new Object[]{sabor, preco, quantidade});
+                }
+
+                rs.close();
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        else{
+            System.out.println(conn + " é nulo!");
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -652,7 +716,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
@@ -664,8 +727,11 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelData;
     private javax.swing.JLabel labelVendasDoDia;
     private javax.swing.JLabel logo;
+    private javax.swing.JTable previewProductTable;
     // End of variables declaration//GEN-END:variables
 }
