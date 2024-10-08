@@ -24,7 +24,9 @@ public class ConnectionModule {
             connection = DriverManager.getConnection(url, user, password);
             return connection;
         } catch (Exception e) {
+            System.out.println("OI!");
             System.out.println(e);
+            System.out.println(connection);
             return null;
         }
     }

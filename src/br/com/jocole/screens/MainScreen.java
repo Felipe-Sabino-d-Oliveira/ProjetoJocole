@@ -9,7 +9,7 @@ import java.util.Date;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 import br.com.jocole.dal.ConnectionModule;
-import br.com.jocole.entites.Product;
+import javax.swing.JTable;
 
 /**
  *
@@ -23,7 +23,9 @@ public class MainScreen extends javax.swing.JFrame {
     public MainScreen() {
         initComponents();
         mostrarDataAtual();
-        loadProductsFromDatabase();
+        loadProductsFromDatabase(previewProductTable);
+        loadProductsFromDatabase(sabino);
+
 
     }
 
@@ -38,6 +40,7 @@ public class MainScreen extends javax.swing.JFrame {
 
         jPanel11 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         FixedMenu = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         buttonLogout = new javax.swing.JLabel();
@@ -75,6 +78,13 @@ public class MainScreen extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         StockScreen = new javax.swing.JPanel();
+        AgrupamentoTelasEstoque = new javax.swing.JTabbedPane();
+        jPanel9 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        sabino = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
         ReportingScreen = new javax.swing.JPanel();
         SalesScreen = new javax.swing.JPanel();
 
@@ -88,6 +98,19 @@ public class MainScreen extends javax.swing.JFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -512,15 +535,112 @@ public class MainScreen extends javax.swing.JFrame {
 
         StockScreen.setBackground(new java.awt.Color(102, 102, 0));
 
+        jPanel9.setBackground(new java.awt.Color(255, 153, 153));
+
+        sabino.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Sabor", "Preço", "Quantidade", "Data de Fabricação"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(sabino);
+        if (sabino.getColumnModel().getColumnCount() > 0) {
+            sabino.getColumnModel().getColumn(0).setResizable(false);
+            sabino.getColumnModel().getColumn(1).setResizable(false);
+            sabino.getColumnModel().getColumn(2).setResizable(false);
+            sabino.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jocole/images/plusIcon.png"))); // NOI18N
+        jButton4.setBorder(null);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jocole/images/deleteIcon.png"))); // NOI18N
+        jButton5.setBorder(null);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1028, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(31, 31, 31)
+                .addComponent(jButton5)
+                .addGap(45, 45, 45))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+
+        AgrupamentoTelasEstoque.addTab("Estoque material", jPanel9);
+
+        jPanel8.setBackground(new java.awt.Color(204, 255, 153));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1050, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 715, Short.MAX_VALUE)
+        );
+
+        AgrupamentoTelasEstoque.addTab("Estouqe Produto", jPanel8);
+
         javax.swing.GroupLayout StockScreenLayout = new javax.swing.GroupLayout(StockScreen);
         StockScreen.setLayout(StockScreenLayout);
         StockScreenLayout.setHorizontalGroup(
             StockScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
+            .addGroup(StockScreenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AgrupamentoTelasEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 1050, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         StockScreenLayout.setVerticalGroup(
             StockScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
+            .addGroup(StockScreenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AgrupamentoTelasEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         AgrupamentoTelas.addTab("Estoque", StockScreen);
@@ -598,6 +718,10 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     private void logout(){
         System.out.println("Saindo!");
         //fecha a janela
@@ -618,43 +742,56 @@ public class MainScreen extends javax.swing.JFrame {
         labelData.setText("Data: " + formato.format(dataAtual));
     }
     
-    private void loadProductsFromDatabase() {
-        Connection conn = ConnectionModule.connection();
-        if (conn != null) {
-            String sql = "SELECT Sabor_picole, Preco_produto, Quantidade_produtos FROM tbprodutos"; // Substitua 'produtos' pelo nome correto da tabela no seu banco
+
+    
+    public void loadProductsFromDatabase(JTable productTable) {
+    Connection conn = ConnectionModule.connection();
+    if (conn != null) {
+        // Inclua 'data_fabricacao' (ou o nome correto da coluna de data no banco de dados)
+        String sql = "SELECT Sabor_picole, Preco_produto, Quantidade_produtos, Data_de_fabricacao FROM tbprodutos";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            // Pega o modelo da tabela recebida como parâmetro
+            DefaultTableModel model = (DefaultTableModel) productTable.getModel();
+            model.setRowCount(0); // Limpa a tabela
+
+            // Loop para adicionar as linhas à tabela
+            while (rs.next()) {
+                String sabor = rs.getString("Sabor_picole");
+                double preco = rs.getDouble("Preco_produto");
+                int quantidade = rs.getInt("Quantidade_produtos");
+
+                // Supondo que 'Data_fabricacao' é do tipo Date ou String no banco de dados
+                Date dataFabricacao = rs.getDate("Data_de_fabricacao"); // Pode usar getString também, se necessário
+
+                // Formatar a data para exibição (opcional)
+                String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataFabricacao);
+
+                // Adiciona uma nova linha com os dados, incluindo a data de fabricação
+                model.addRow(new Object[]{sabor, preco, quantidade, dataFormatada});
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery();
-
-                // Pega o modelo da tabela
-                DefaultTableModel model = (DefaultTableModel) previewProductTable.getModel();
-                model.setRowCount(0); // Limpa a tabela
-
-                while (rs.next()) {
-                    String sabor = rs.getString("sabor_picole");
-                    double preco = rs.getDouble("preco_produto");
-                    int quantidade = rs.getInt("quantidade_produtos");
-
-                    // Adiciona uma nova linha com os dados do banco
-                    model.addRow(new Object[]{sabor, preco, quantidade});
-                }
-
-                rs.close();
-                stmt.close();
+                conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
             }
         }
-        else{
-            System.out.println(conn + " é nulo!");
-        }
+    } else {
+        System.out.println(conn + " é nulo!");
     }
+}
+
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -693,6 +830,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane AgrupamentoTelas;
+    private javax.swing.JTabbedPane AgrupamentoTelasEstoque;
     private javax.swing.JPanel FixedMenu;
     private javax.swing.JPanel HomeScreen;
     private javax.swing.JPanel ReportingScreen;
@@ -706,6 +844,8 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -727,11 +867,16 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelData;
     private javax.swing.JLabel labelVendasDoDia;
     private javax.swing.JLabel logo;
     private javax.swing.JTable previewProductTable;
+    private javax.swing.JTable sabino;
     // End of variables declaration//GEN-END:variables
 }

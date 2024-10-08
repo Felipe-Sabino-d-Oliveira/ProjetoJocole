@@ -25,7 +25,7 @@ public class LoginScreen extends javax.swing.JFrame {
     //Metodo de logar 
     public void Log(){
         //query no bd
-        String sql = "SELECT * FROM tbUsers WHERE Login=? AND Senha=?";
+        String sql = "SELECT * FROM tbUsers WHERE Login=? AND Password=?";
         
         try{
             //Serve para preparar uma consulta SQL
