@@ -398,14 +398,26 @@ public class MainScreen extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         previewProductTable.setShowHorizontalLines(true);
         previewProductTable.setShowVerticalLines(true);
         jScrollPane2.setViewportView(previewProductTable);
+        if (previewProductTable.getColumnModel().getColumnCount() > 0) {
+            previewProductTable.getColumnModel().getColumn(0).setResizable(false);
+            previewProductTable.getColumnModel().getColumn(1).setResizable(false);
+            previewProductTable.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
