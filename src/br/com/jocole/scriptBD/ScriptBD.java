@@ -30,6 +30,17 @@ public class ScriptBD {
     //CREATE TABLE tbmaterial(Codigomaterial INTEGER AUTO_INCREMENT PRIMARY KEY, Nome_material VARCHAR(50) NOT NULL, Preco_material DECIMAL(10,2), Quantidade_material INTEGER NOT NULL, Data_de_fabricacao DATE);
     //INSERT INTO tbmaterial(Nome_material, Preco_material, Quantidade_material, Data_de_fabricacao) VALUES("Materia_Prima_teste", 0.00, 0, '2001-01-01'), ("Materia_Prima_teste2", 2.00, 2, '2002-02-02'), ("Materia_Prima_teste3", 3.00, 3, '2003-03-03'), ("Materia_Prima_teste4", 4.00, 4, '2004-04-04'), ("Materia_Prima_teste5", 5.00, 5, '2005-05-05');
     //SELECT * FROM tbmaterial;
-    //-- Código para criar a tabela de 
+    //-- Código para criar a tabela de vendas
+    //CREATE TABLE tbvendas(Codigovenda INTEGER AUTO_INCREMENT PRIMARY KEY, Sabor_picole VARCHAR(50) NOT NULL REFERENCES tbprodutos(Sabor_picole), Quantidade_produto_vendido INTEGER NOT NULL, Valor_total_venda DECIMAL(10,2), Data_da_venda DATE);
+    //INSERT INTO tbvendas (Sabor_picole, Quantidade_produto_vendido, Data_da_venda, Valor_total_venda)
+    //SELECT 
+    //    ?,                              -- Sabor do picolé vendido (valor será passado ao executar)
+    //    ?,                              -- Quantidade vendida (valor será passado ao executar)
+    //    ?,                              -- Data da venda (valor será passado ao executar)
+    //    p.Preco_produto * ?             -- Cálculo do valor total (preço * quantidade vendida)
+    //FROM 
+    //    tbprodutos p
+    //WHERE 
+    //    p.Sabor_picole = ?;             -- Filtra o produto pelo sabor
 
 }
