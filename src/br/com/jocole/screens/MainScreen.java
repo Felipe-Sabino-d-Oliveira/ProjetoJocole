@@ -4,7 +4,10 @@
  */
 package br.com.jocole.screens;
 
+import br.com.jocole.charts.ChartHome;
 import br.com.jocole.utilities.Utilities;
+import java.awt.BorderLayout;
+import org.jfree.chart.ChartPanel;
 
 /**
  *
@@ -32,6 +35,14 @@ public class MainScreen extends javax.swing.JFrame {
         util.loadMissingProductsFromDatabase(tableMissingProduct);
         
         util.loadSalesFromDatabase(tableSales);
+        
+        // Instanciar a classe ChartHome e adicionar o gráfico ao painel
+        ChartHome chartHome = new ChartHome();
+        ChartPanel graficoPanel = chartHome.criarGraficoDeBarras();
+        panelReportingHome.add(graficoPanel, BorderLayout.CENTER);
+
+        // Adicionar o painel principal à janela
+        add(panelReportingHome);
         
     }
 
@@ -86,7 +97,7 @@ public class MainScreen extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tableMissingProduct = new javax.swing.JTable();
-        jPanel12 = new javax.swing.JPanel();
+        panelReportingHome = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         StockScreen = new javax.swing.JPanel();
         AgrupamentoTelasEstoque = new javax.swing.JTabbedPane();
@@ -625,18 +636,18 @@ public class MainScreen extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel12.setText("Relatorio");
 
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelReportingHomeLayout = new javax.swing.GroupLayout(panelReportingHome);
+        panelReportingHome.setLayout(panelReportingHomeLayout);
+        panelReportingHomeLayout.setHorizontalGroup(
+            panelReportingHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReportingHomeLayout.createSequentialGroup()
                 .addContainerGap(190, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addGap(191, 191, 191))
         );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
+        panelReportingHomeLayout.setVerticalGroup(
+            panelReportingHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelReportingHomeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -660,7 +671,7 @@ public class MainScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panelReportingHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(62, 62, 62))
         );
         HomeScreenLayout.setVerticalGroup(
@@ -672,7 +683,7 @@ public class MainScreen extends javax.swing.JFrame {
                     .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(HomeScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelReportingHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(HomeScreenLayout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1128,7 +1139,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
@@ -1152,6 +1162,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel labelVendasDoDia;
     private javax.swing.JLabel logo;
     private javax.swing.JTable materialDisplayTable;
+    private javax.swing.JPanel panelReportingHome;
     private javax.swing.JTable previewProductTableMaterials;
     private javax.swing.JTable previewProductTableProducts;
     private javax.swing.JTable productDisplayTable;
