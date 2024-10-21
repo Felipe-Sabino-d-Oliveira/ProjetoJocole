@@ -4,29 +4,36 @@
  */
 package br.com.jocole.dal;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-/**
- *
- * @author yuriv
- */
 public class ConnectionModule {
 
+ /**
+ * 
+ * @author yuriv
+ */
+
     public static Connection connection() {
-        System.out.println("teste");
-        java.sql.Connection connection = null;
+        Connection connection = null;
         String driver = "com.mysql.cj.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/dbjocole";
         String user = "root";
         String password = "";
+
         try {
-            Class.forName(driver);      
+            // Carregar o driver JDBC
+            Class.forName(driver);  
+            
+            // Estabelecer a conexão com o banco de dados
             connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Conexão estabelecida com sucesso!");
             return connection;
-        } catch (Exception e) {
-            System.out.println("OI!");
-            System.out.println(e);
-            System.out.println(connection);
+
+        } catch (ClassNotFoundException | SQLException e) {
+            // Logar erro detalhado para facilitar o diagnóstico
+            System.err.println("Erro ao conectar ao banco de dados: " + e.getMessage());
             return null;
         }
     }
