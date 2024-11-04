@@ -7,6 +7,7 @@ package br.com.jocole.screens;
 import br.com.jocole.charts.ChartHome;
 import br.com.jocole.utilities.Utilities;
 import java.awt.BorderLayout;
+import javax.swing.JPanel;
 import org.jfree.chart.ChartPanel;
 
 /**
@@ -36,13 +37,16 @@ public class MainScreen extends javax.swing.JFrame {
         
         util.loadSalesFromDatabase(tableSales);
         
-        // Instanciar a classe ChartHome e adicionar o gráfico ao painel
+        // Instanciar a classe ChartHome e criar o gráfico
         ChartHome chartHome = new ChartHome();
-        ChartPanel graficoPanel = chartHome.criarGraficoDeBarras();
+        JPanel graficoPanel = chartHome.criarGraficoDeBarras();
         panelReportingHome.add(graficoPanel, BorderLayout.CENTER);
+        
+         // Definir a posição e o tamanho do gráfico
+        graficoPanel.setBounds(0, 0, 450, 450);  // Definir a posição e o tamanho fixo do gráfico
 
-        // Adicionar o painel principal à janela
-        add(panelReportingHome);
+        // Adicionar o painel de gráfico ao panelReportingHome
+        panelReportingHome.add(graficoPanel);
         
     }
 
@@ -98,7 +102,6 @@ public class MainScreen extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         tableMissingProduct = new javax.swing.JTable();
         panelReportingHome = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
         StockScreen = new javax.swing.JPanel();
         AgrupamentoTelasEstoque = new javax.swing.JTabbedPane();
         jPanel9 = new javax.swing.JPanel();
@@ -630,27 +633,18 @@ public class MainScreen extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel12.setText("Relatorio");
 
         javax.swing.GroupLayout panelReportingHomeLayout = new javax.swing.GroupLayout(panelReportingHome);
         panelReportingHome.setLayout(panelReportingHomeLayout);
         panelReportingHomeLayout.setHorizontalGroup(
             panelReportingHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReportingHomeLayout.createSequentialGroup()
-                .addContainerGap(190, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addGap(191, 191, 191))
+            .addGap(0, 454, Short.MAX_VALUE)
         );
         panelReportingHomeLayout.setVerticalGroup(
             panelReportingHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelReportingHomeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 459, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout HomeScreenLayout = new javax.swing.GroupLayout(HomeScreen);
@@ -681,7 +675,7 @@ public class MainScreen extends javax.swing.JFrame {
                 .addGroup(HomeScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(HomeScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelReportingHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(HomeScreenLayout.createSequentialGroup()
@@ -1127,7 +1121,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
