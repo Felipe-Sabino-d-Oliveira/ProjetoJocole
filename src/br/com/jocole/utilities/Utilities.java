@@ -24,6 +24,22 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Utilities {
 
+    final private Connection connection;
+
+    public Utilities() {
+        this.connection = ConnectionModule.connection();
+    }
+
+    public void closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public final void mostrarDataAtual(JComponent component) {
         // Obtém a data atual
         java.util.Date dataAtual = new java.util.Date();
@@ -40,19 +56,15 @@ public class Utilities {
     }
 
     public void loadProductsFromDatabase(JTable productTable, String tipoSelect, boolean isPreview) {
-        Connection conn = ConnectionModule.connection();
-        if (conn != null) {
-            // Consultas para todos os valores
+        if (connection != null) {
             String selectProdutos = "SELECT Sabor_picole, Preco_produto, Quantidade_produtos, Data_de_fabricacao FROM tbprodutos";
             String selectMateriais = "SELECT Nome_material, Preco_material, Quantidade_material, Data_de_fabricacao FROM tbmaterial";
 
-            // Consultas para apenas 3 valores (prévia)
             String previewProdutos = "SELECT Sabor_picole, Preco_produto, Quantidade_produtos, Data_de_fabricacao FROM tbprodutos LIMIT 3";
             String previewMateriais = "SELECT Nome_material, Preco_material, Quantidade_material, Data_de_fabricacao FROM tbmaterial LIMIT 3";
 
             String query = "";
 
-            // Define a consulta SQL com base no tipo e se é prévia
             if (tipoSelect.toLowerCase().equals("produtos")) {
                 query = isPreview ? previewProdutos : selectProdutos;
             } else if (tipoSelect.toLowerCase().equals("materiais")) {
@@ -60,14 +72,12 @@ public class Utilities {
             }
 
             try {
-                PreparedStatement stmt = conn.prepareStatement(query);
+                PreparedStatement stmt = connection.prepareStatement(query);
                 ResultSet rs = stmt.executeQuery();
 
-                // Pega o modelo da tabela recebida como parâmetro
                 DefaultTableModel model = (DefaultTableModel) productTable.getModel();
-                model.setRowCount(0); // Limpa a tabela
+                model.setRowCount(0);
 
-                // Loop para adicionar as linhas à tabela
                 while (rs.next()) {
                     String nome = tipoSelect.toLowerCase().equals("produtos") ? rs.getString("Sabor_picole") : rs.getString("Nome_material");
                     double preco = tipoSelect.toLowerCase().equals("produtos") ? rs.getDouble("Preco_produto") : rs.getDouble("Preco_material");
@@ -75,7 +85,6 @@ public class Utilities {
                     Date dataFabricacao = rs.getDate("Data_de_fabricacao");
                     String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataFabricacao);
 
-                    // Adiciona uma nova linha com os dados
                     model.addRow(new Object[]{nome, preco, quantidade, dataFormatada});
                 }
 
@@ -83,43 +92,30 @@ public class Utilities {
                 stmt.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
             }
         } else {
-            System.out.println(conn + " é nulo!");
+            System.out.println("Conexão é nula!");
         }
     }
 
     public void loadMissingProductsFromDatabase(JTable tableMissingProduct) {
-        Connection conn = ConnectionModule.connection();
-        if (conn != null) {
-            // Consulta SQL para produtos com quantidade abaixo de 30
+        if (connection != null) {
             String selectMissingProducts = "SELECT Sabor_picole, Preco_produto, Quantidade_produtos, Data_de_fabricacao FROM tbprodutos WHERE Quantidade_produtos < 30";
 
             try {
-                PreparedStatement stmt = conn.prepareStatement(selectMissingProducts);
+                PreparedStatement stmt = connection.prepareStatement(selectMissingProducts);
                 ResultSet rs = stmt.executeQuery();
 
-                // Pega o modelo da tabela recebida como parâmetro
                 DefaultTableModel model = (DefaultTableModel) tableMissingProduct.getModel();
-                model.setRowCount(0); // Limpa a tabela
+                model.setRowCount(0);
 
-                // Loop para adicionar as linhas à tabela
                 while (rs.next()) {
                     String sabor = rs.getString("Sabor_picole");
                     double preco = rs.getDouble("Preco_produto");
                     int quantidade = rs.getInt("Quantidade_produtos");
                     Date dataFabricacao = rs.getDate("Data_de_fabricacao");
-
-                    // Formatar a data para exibição (opcional)
                     String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataFabricacao);
 
-                    // Adiciona uma nova linha com os dados
                     model.addRow(new Object[]{sabor, preco, quantidade, dataFormatada});
                 }
 
@@ -127,98 +123,89 @@ public class Utilities {
                 stmt.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
             }
         } else {
-            System.out.println(conn + " é nulo!");
+            System.out.println("Conexão é nula!");
+        }
+    }
+
+    public void loadSalesFromDatabase(JTable tableSales) {
+        if (connection != null) {
+            String query = "SELECT Sabor_picole, Quantidade_produto_vendido, Valor_total_venda, Data_da_venda FROM tbvendas";
+
+            try (PreparedStatement ps = connection.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
+
+                DefaultTableModel model = (DefaultTableModel) tableSales.getModel();
+                model.setRowCount(0);  // Limpa a tabela antes de adicionar os novos dados
+
+                while (rs.next()) {
+                    String sabor = rs.getString("Sabor_picole");
+                    int quantidadeVendida = rs.getInt("Quantidade_produto_vendido");
+                    double valorTotal = rs.getDouble("Valor_total_venda");
+                    Date dataVenda = rs.getDate("Data_da_venda");
+
+                    // Formata a data para exibição
+                    String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataVenda);
+
+                    // Adiciona uma nova linha na tabela
+                    model.addRow(new Object[]{sabor, quantidadeVendida, valorTotal, dataFormatada});
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro ao carregar vendas do banco de dados: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Conexão é nula!");
         }
     }
 
     public void addSaleToTable(JTextField textFieldProductName, JTextField textFieldProductQuantity, JTextField textFieldSaleData, JTable tableSales) {
-        // Obtém os valores dos campos de texto
         String productName = textFieldProductName.getText();
         String productQuantity = textFieldProductQuantity.getText();
         String saleDate = textFieldSaleData.getText();
 
-        // Verifica se os campos obrigatórios estão preenchidos
         if (productName.isEmpty() || productQuantity.isEmpty() || saleDate.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
-            return; // Sai do método para evitar o erro
+            return;
         }
 
         try {
-            // Converte a quantidade para inteiro
-            int quantity = Integer.parseInt(productQuantity); // Verifica se é um número válido
+            int quantity = Integer.parseInt(productQuantity);
 
-            // Calcula o valor total (Exemplo: suposição de preço fixo por produto)
-            double pricePerProduct = 10.00; // Exemplo de preço
-            double totalValue = pricePerProduct * quantity; // Calcula o valor total da venda
+            double pricePerProduct = getProductPriceFromDatabase(productName);
 
-            // Pega o modelo da tabela para adicionar uma nova linha
+            if (pricePerProduct == -1) {
+                JOptionPane.showMessageDialog(null, "Produto não encontrado no banco de dados!");
+                return;
+            }
+
+            double totalValue = pricePerProduct * quantity;
+
             DefaultTableModel model = (DefaultTableModel) tableSales.getModel();
-
-            // Adiciona uma nova linha na tabela
             model.addRow(new Object[]{productName, productQuantity, totalValue, saleDate});
 
-            // Limpa os campos de texto após a inserção
             textFieldProductName.setText("");
             textFieldProductQuantity.setText("");
             textFieldSaleData.setText("");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "A quantidade deve ser um número válido!");
-        }
-    }
-
-    public void loadSalesFromDatabase(JTable tableSales) {
-        Connection conn = ConnectionModule.connection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        try {
-
-            // Consulta SQL para obter as vendas
-            String sql = "SELECT Sabor_picole, Quantidade_produto_vendido, Valor_total_venda, Data_da_venda FROM tbvendas";
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            // Obtém o modelo da tabela
-            DefaultTableModel model = (DefaultTableModel) tableSales.getModel();
-            model.setRowCount(0); // Limpa a tabela antes de adicionar os novos dados
-
-            // Preenche a tabela com os dados retornados da consulta
-            while (rs.next()) {
-                String sabor = rs.getString("Sabor_picole");
-                int quantidadeVendida = rs.getInt("Quantidade_produto_vendido");
-                double valorTotal = rs.getDouble("Valor_total_venda");
-                Date dataVenda = rs.getDate("Data_da_venda");
-
-                // Adiciona a linha na tabela
-                model.addRow(new Object[]{sabor, quantidadeVendida, valorTotal, dataVenda});
-            }
         } catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Erro ao carregar vendas do banco de dados: " + e.getMessage());
-        } finally {
-            // Fechar a conexão, statement e resultset
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            JOptionPane.showMessageDialog(null, "Erro ao buscar o preço do produto no banco de dados: " + e.getMessage());
         }
     }
 
+    private double getProductPriceFromDatabase(String productName) throws SQLException {
+        String query = "SELECT Preco_produto FROM tbprodutos WHERE Sabor_picole = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, productName);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getDouble("Preco_produto");
+            } else {
+                return -1;
+            }
+        }
+    }
 }
