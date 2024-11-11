@@ -7,9 +7,11 @@ package br.com.jocole.utilities;
 import br.com.jocole.dal.ConnectionModule;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -52,6 +54,48 @@ public class Utilities {
             ((JLabel) component).setText("Data: " + formato.format(dataAtual));
         } else if (component instanceof JTextField) {
             ((JTextField) component).setText(formato.format(dataAtual));
+        }
+    }
+
+    public void mostrarTotalVendasDia(JComponent component) {
+        try {
+            // Conectar ao banco de dados
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbjocole", "seu_usuario", "sua_senha");
+
+            // Query para somar as vendas do dia atual
+            String query = "SELECT SUM(Valor_total_venda) FROM tbvendas WHERE Data_da_venda = CURDATE()";
+
+            // Preparar a query e executar
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            double totalVendas = 0.0;
+
+            // Se houver resultado, pegar o valor total
+            if (rs.next()) {
+                totalVendas = rs.getDouble(1); // Pegar a soma
+            }
+
+            // Fechar a conexão
+            rs.close();
+            stmt.close();
+            conn.close();
+
+            // Exibir o valor total no componente
+            String totalFormatado = String.format("Total de vendas: R$ %.2f", totalVendas);
+            if (component instanceof JLabel) {
+                ((JLabel) component).setText(totalFormatado);
+            } else if (component instanceof JTextField) {
+                ((JTextField) component).setText(totalFormatado);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Tratar o erro, por exemplo, exibindo uma mensagem de erro no componente
+            if (component instanceof JLabel) {
+                ((JLabel) component).setText("Erro ao buscar total de vendas");
+            } else if (component instanceof JTextField) {
+                ((JTextField) component).setText("Erro");
+            }
         }
     }
 
@@ -175,7 +219,6 @@ public class Utilities {
 
         try {
             int quantity = Integer.parseInt(productQuantity);
-
             double pricePerProduct = getProductPriceFromDatabase(productName);
 
             if (pricePerProduct == -1) {
@@ -185,16 +228,44 @@ public class Utilities {
 
             double totalValue = pricePerProduct * quantity;
 
-            DefaultTableModel model = (DefaultTableModel) tableSales.getModel();
-            model.addRow(new Object[]{productName, productQuantity, totalValue, saleDate});
+            // Inserção da nova venda no banco de dados e recuperação do ID gerado
+            String insertSaleQuery = "INSERT INTO tbvendas (Sabor_picole, Quantidade_produto_vendido, Data_da_venda, Valor_total_venda) VALUES (?, ?, ?, ?)";
 
-            textFieldProductName.setText("");
-            textFieldProductQuantity.setText("");
-            textFieldSaleData.setText("");
+            try (PreparedStatement ps = connection.prepareStatement(insertSaleQuery, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setString(1, productName);
+                ps.setInt(2, quantity);
+                ps.setString(3, saleDate);  // A data já deve estar no formato apropriado (yyyy-MM-dd)
+                ps.setDouble(4, totalValue);
+
+                int affectedRows = ps.executeUpdate();
+
+                if (affectedRows == 0) {
+                    throw new SQLException("Falha ao inserir a venda, nenhuma linha foi alterada.");
+                }
+
+                // Recupera o ID gerado automaticamente
+                try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        int saleId = generatedKeys.getInt(1);
+
+                        // Atualiza a tabela com o ID da venda recém-adicionada
+                        DefaultTableModel model = (DefaultTableModel) tableSales.getModel();
+                        model.addRow(new Object[]{saleId, productName, quantity, totalValue, saleDate});
+
+                        // Limpa os campos de texto após adicionar a venda
+                        textFieldProductName.setText("");
+                        textFieldProductQuantity.setText("");
+                        textFieldSaleData.setText("");
+                    } else {
+                        throw new SQLException("Falha ao inserir a venda, não foi possível obter o ID.");
+                    }
+                }
+            }
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "A quantidade deve ser um número válido!");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar o preço do produto no banco de dados: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar a venda: " + e.getMessage());
         }
     }
 
