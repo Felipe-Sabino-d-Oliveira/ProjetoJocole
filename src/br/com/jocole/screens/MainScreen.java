@@ -125,6 +125,7 @@ public class MainScreen extends javax.swing.JFrame {
         textFieldSaleData = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         textFieldSaleID = new javax.swing.JTextField();
+        buttonRemoveSale = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -884,6 +885,9 @@ public class MainScreen extends javax.swing.JFrame {
         tableSales.setShowHorizontalLines(true);
         tableSales.setShowVerticalLines(true);
         jScrollPane8.setViewportView(tableSales);
+        if (tableSales.getColumnModel().getColumnCount() > 0) {
+            tableSales.getColumnModel().getColumn(0).setHeaderValue("ID");
+        }
 
         jLabel5.setText("Quantidade vendida");
 
@@ -908,31 +912,38 @@ public class MainScreen extends javax.swing.JFrame {
 
         jLabel12.setText("ID da venda");
 
+        buttonRemoveSale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jocole/images/deleteIcon.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(textFieldProductQuantity)
+                            .addComponent(textFieldProductName)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldSaleData)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldSaleID)))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
                         .addComponent(buttonAddSale)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonAlterSale))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                    .addComponent(textFieldProductQuantity)
-                    .addComponent(textFieldProductName)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldSaleData)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldSaleID))
-                .addContainerGap(33, Short.MAX_VALUE))
+                        .addGap(9, 9, 9)
+                        .addComponent(buttonRemoveSale)
+                        .addGap(9, 9, 9)
+                        .addComponent(buttonAlterSale)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(textFieldSaleID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -951,8 +962,9 @@ public class MainScreen extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonAddSale)
-                    .addComponent(buttonAlterSale))
-                .addGap(76, 76, 76))
+                    .addComponent(buttonAlterSale)
+                    .addComponent(buttonRemoveSale))
+                .addGap(91, 91, 91))
         );
 
         javax.swing.GroupLayout SalesScreenLayout = new javax.swing.GroupLayout(SalesScreen);
@@ -1102,6 +1114,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton buttonAddSale;
     private javax.swing.JButton buttonAlterSale;
     private javax.swing.JLabel buttonLogout;
+    private javax.swing.JButton buttonRemoveSale;
     private javax.swing.JButton buttonToStockOne;
     private javax.swing.JButton buttonToStockTwo;
     private javax.swing.JButton jButton3;

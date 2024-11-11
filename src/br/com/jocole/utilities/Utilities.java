@@ -131,24 +131,27 @@ public class Utilities {
 
     public void loadSalesFromDatabase(JTable tableSales) {
         if (connection != null) {
-            String query = "SELECT Sabor_picole, Quantidade_produto_vendido, Valor_total_venda, Data_da_venda FROM tbvendas";
+            // Adiciona a coluna 'Codigovenda' na consulta para pegar o ID das vendas
+            String query = "SELECT Codigovenda, Sabor_picole, Quantidade_produto_vendido, Valor_total_venda, Data_da_venda FROM tbvendas";
 
             try (PreparedStatement ps = connection.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
 
                 DefaultTableModel model = (DefaultTableModel) tableSales.getModel();
                 model.setRowCount(0);  // Limpa a tabela antes de adicionar os novos dados
 
+                // Loop para preencher a tabela com os dados retornados da consulta
                 while (rs.next()) {
-                    String sabor = rs.getString("Sabor_picole");
-                    int quantidadeVendida = rs.getInt("Quantidade_produto_vendido");
-                    double valorTotal = rs.getDouble("Valor_total_venda");
-                    Date dataVenda = rs.getDate("Data_da_venda");
+                    int idVenda = rs.getInt("Codigovenda");                    // Pega o ID da venda
+                    String sabor = rs.getString("Sabor_picole");            // Pega o sabor do picolé
+                    int quantidadeVendida = rs.getInt("Quantidade_produto_vendido"); // Pega a quantidade vendida
+                    double valorTotal = rs.getDouble("Valor_total_venda");   // Pega o valor total da venda
+                    Date dataVenda = rs.getDate("Data_da_venda");            // Pega a data da venda
 
                     // Formata a data para exibição
                     String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataVenda);
 
-                    // Adiciona uma nova linha na tabela
-                    model.addRow(new Object[]{sabor, quantidadeVendida, valorTotal, dataFormatada});
+                    // Adiciona uma nova linha na tabela com o ID da venda
+                    model.addRow(new Object[]{idVenda, sabor, quantidadeVendida, valorTotal, dataFormatada});
                 }
 
             } catch (SQLException e) {
