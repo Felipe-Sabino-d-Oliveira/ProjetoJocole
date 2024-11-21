@@ -405,7 +405,7 @@ public class MainScreen extends javax.swing.JFrame {
 
         getContentPane().add(FixedMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 770));
 
-        HomeScreen.setBackground(new java.awt.Color(51, 0, 204));
+        HomeScreen.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -585,6 +585,7 @@ public class MainScreen extends javax.swing.JFrame {
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -645,6 +646,7 @@ public class MainScreen extends javax.swing.JFrame {
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -707,6 +709,7 @@ public class MainScreen extends javax.swing.JFrame {
         );
 
         panelReportingHome.setBackground(new java.awt.Color(255, 255, 255));
+        panelReportingHome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         javax.swing.GroupLayout panelReportingHomeLayout = new javax.swing.GroupLayout(panelReportingHome);
         panelReportingHome.setLayout(panelReportingHomeLayout);
@@ -761,7 +764,7 @@ public class MainScreen extends javax.swing.JFrame {
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(HomeScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelReportingHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -779,7 +782,7 @@ public class MainScreen extends javax.swing.JFrame {
                 .addGroup(HomeScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 31, Short.MAX_VALUE)
+                .addGap(18, 27, Short.MAX_VALUE)
                 .addGroup(HomeScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeScreenLayout.createSequentialGroup()
@@ -790,9 +793,10 @@ public class MainScreen extends javax.swing.JFrame {
 
         AgrupamentoTelas.addTab("Início", HomeScreen);
 
-        StockScreen.setBackground(new java.awt.Color(51, 0, 204));
+        StockScreen.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         materialDisplayTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -849,7 +853,7 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1028, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
@@ -866,7 +870,7 @@ public class MainScreen extends javax.swing.JFrame {
                     .addComponent(jButton5))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         AgrupamentoTelasEstoque.addTab("Estoque material", jPanel9);
@@ -973,9 +977,10 @@ public class MainScreen extends javax.swing.JFrame {
 
         jScrollPane9.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        jPanel11.setBackground(new java.awt.Color(51, 0, 204));
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
         paneChart1.setBackground(new java.awt.Color(255, 255, 255));
+        paneChart1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         javax.swing.GroupLayout paneChart1Layout = new javax.swing.GroupLayout(paneChart1);
         paneChart1.setLayout(paneChart1Layout);
@@ -989,6 +994,7 @@ public class MainScreen extends javax.swing.JFrame {
         );
 
         paneChart2.setBackground(new java.awt.Color(255, 255, 255));
+        paneChart2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         javax.swing.GroupLayout paneChart2Layout = new javax.swing.GroupLayout(paneChart2);
         paneChart2.setLayout(paneChart2Layout);
@@ -1002,6 +1008,7 @@ public class MainScreen extends javax.swing.JFrame {
         );
 
         paneChart3.setBackground(new java.awt.Color(255, 255, 255));
+        paneChart3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         javax.swing.GroupLayout paneChart3Layout = new javax.swing.GroupLayout(paneChart3);
         paneChart3.setLayout(paneChart3Layout);
@@ -1015,6 +1022,7 @@ public class MainScreen extends javax.swing.JFrame {
         );
 
         paneChart4.setBackground(new java.awt.Color(255, 255, 255));
+        paneChart4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         javax.swing.GroupLayout paneChart4Layout = new javax.swing.GroupLayout(paneChart4);
         paneChart4.setLayout(paneChart4Layout);
@@ -1074,8 +1082,9 @@ public class MainScreen extends javax.swing.JFrame {
 
         AgrupamentoTelas.addTab("Relatórios", ReportingScreen);
 
-        SalesScreen.setBackground(new java.awt.Color(51, 0, 204));
+        SalesScreen.setBackground(new java.awt.Color(255, 255, 255));
 
+        tableSales.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         tableSales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
