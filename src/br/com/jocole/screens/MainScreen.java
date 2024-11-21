@@ -507,7 +507,8 @@ public class MainScreen extends javax.swing.JFrame {
         buttonToStockTwo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         buttonToStockTwo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jocole/images/arrow.png"))); // NOI18N
         buttonToStockTwo.setText("Conferir estoques");
-        buttonToStockTwo.setBorder(null);
+        buttonToStockTwo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        buttonToStockTwo.setBorderPainted(false);
         buttonToStockTwo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buttonToStockTwo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         buttonToStockTwo.addActionListener(new java.awt.event.ActionListener() {
@@ -876,6 +877,7 @@ public class MainScreen extends javax.swing.JFrame {
         AgrupamentoTelasEstoque.addTab("Estoque material", jPanel9);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         productDisplayTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -932,7 +934,7 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1028, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6)
@@ -949,7 +951,7 @@ public class MainScreen extends javax.swing.JFrame {
                     .addComponent(jButton7))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         AgrupamentoTelasEstoque.addTab("Estoque Produto", jPanel8);
